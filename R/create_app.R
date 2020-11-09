@@ -4,9 +4,9 @@
 #' @param title App title
 #'
 #' @export
-create_dash <- function(path = ".", title = NULL) {
+create_dash <- function(path, title = NULL) {
 
-  dir <- fs::dir_ls(system.file("dash_app", package = "dashmaker"), all = TRUE)
+  dir <- fs::dir_ls(system.file("dash_app", package = "appMaker"), all = TRUE)
   dir.create(path, recursive = TRUE, showWarnings = FALSE)
   file.copy(dir, path, recursive = TRUE, overwrite = TRUE)
   new_dir <- dir(normalizePath(path), full.names = TRUE)
@@ -32,7 +32,7 @@ create_dash <- function(path = ".", title = NULL) {
     app_ui_file <- dir(new_dir[grepl("R$", new_dir)],
                        full.names = TRUE, pattern = "app_ui")
 
-    replace_text_from_file(app_ui_file, "TITLE", titulo)
+    replace_text_from_file(app_ui_file, "TITLE", title)
   }
 
   usethis::proj_activate(path)
@@ -53,7 +53,7 @@ replace_text_from_file <- function(file, pattern, text) {
 #' @export
 create_simple_app <- function(path = ".", title = NULL) {
   
-  dir <- fs::dir_ls(system.file("dash_app", package = "dashmaker"), all = TRUE)
+  dir <- fs::dir_ls(system.file("simple_app", package = "appMaker"), all = TRUE)
   dir.create(path, recursive = TRUE, showWarnings = FALSE)
   file.copy(dir, path, recursive = TRUE, overwrite = TRUE)
   new_dir <- dir(normalizePath(path), full.names = TRUE)
@@ -79,7 +79,7 @@ create_simple_app <- function(path = ".", title = NULL) {
     app_ui_file <- dir(new_dir[grepl("R$", new_dir)],
                        full.names = TRUE, pattern = "app_ui")
     
-    replace_text_from_file(app_ui_file, "TITLE", titulo)
+    replace_text_from_file(app_ui_file, "TITLE", title)
   }
   
   usethis::proj_activate(path)
