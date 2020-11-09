@@ -58,30 +58,6 @@ create_simple_app <- function(path = ".", title = NULL) {
   file.copy(dir, path, recursive = TRUE, overwrite = TRUE)
   new_dir <- dir(normalizePath(path), full.names = TRUE)
   
-  files <- "golem-config|app_config\\.R|DESCRIPTION|app\\.R$|README|01_start\\.R"
-  
-  files_to_replace <- dir(
-    dirname(new_dir),
-    full.names = TRUE,
-    recursive = TRUE,
-    pattern = files
-  )
-  
-  purrr::walk(
-    files_to_replace,
-    replace_text_from_file,
-    "PACKAGENAME",
-    basename(path)
-  )
-  
-  if (!is.null(title)) {
-    # Arquivo app_ui.R
-    app_ui_file <- dir(new_dir[grepl("R$", new_dir)],
-                       full.names = TRUE, pattern = "app_ui")
-    
-    replace_text_from_file(app_ui_file, "TITLE", title)
-  }
-  
   usethis::proj_activate(path)
 }
 
