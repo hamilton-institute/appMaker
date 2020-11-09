@@ -26,23 +26,30 @@ app_ui <- function(request) {
       controlbar = dashboardControlbar(),
 
       #---
-      navbar = dashboardHeader(
-        title = "TITLE"
+      navbar = bs4Dash::bs4DashNavbar(
+        skin = "light",
+        status = "light",
+        border = TRUE,
+        sidebarIcon = "bars",
+        compact = FALSE,
+        controlbarIcon = "th"
       ),
 
       #---
       sidebar = dashboardSidebar(
         skin = "light",
+        status = "primary",
+        brandColor = "dark",
         title = "TITLE",
         bs4SidebarMenu(
           bs4SidebarMenuItem(
-            "Perfil",
+            "Summary",
             tabName = "summary",
             icon = "bullseye"
           ),
           bs4SidebarMenuItem(
-            "Dados",
-            tabName = "summary",
+            "Data",
+            tabName = "data",
             icon = "database"
           )
         )
@@ -54,11 +61,11 @@ app_ui <- function(request) {
         bs4TabItems(
           bs4TabItem(
             tabName = "summary",
-            mod_sumario_ui("ui_summary_1")
+            mod_summary_ui("ui_summary_1")
           ),
           bs4TabItem(
-            tabName = "summary",
-            mod_dados_ui("ui_dados_1")
+            tabName = "data",
+            mod_data_ui("ui_data_1")
           )
         )
       ),
@@ -69,7 +76,7 @@ app_ui <- function(request) {
           href = "https://www.maynoothuniversity.ie/hamilton",
           target = "_blank", "Hamilton Institute"
         ),
-        right_text = "2020 | developed by the Hamilton Institute"
+        right_text = "2020 | developed by Hamilton Institute"
       )
     )
   )
@@ -85,6 +92,8 @@ app_ui <- function(request) {
 #' @noRd
 golem_add_external_resources <- function(){
 
+  hamiltonCovid19::use_css_bs4Dash_distill()
+  
   shinyjs::useShinyjs()
   add_resource_path(
     'www', app_sys('app/www')

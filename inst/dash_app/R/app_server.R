@@ -6,7 +6,7 @@
 #' @noRd
 app_server <- function( input, output, session ) {
 
-  mod_sumario_server("ui_summary_1")
-  mod_dados_server("ui_data_1")
+  mod_summary_server("ui_summary_1")
+  mod_data_server("ui_data_1")
   
 }
