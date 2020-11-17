@@ -11,6 +11,7 @@ app_ui <- function(request) {
   tagList(
     # Leave this function for adding external resources
     golem_add_external_resources(),
+    hamiltonThemes::use_bs4Dash_distill_css(),
     # List the first level UI elements here
     dashboardPage(
       enable_preloader = FALSE,
@@ -86,8 +87,6 @@ app_ui <- function(request) {
 #' @noRd
 golem_add_external_resources <- function() {
   
-  hamiltonThemes::use_bs4Dash_distill_css()
-
   shinyjs::useShinyjs()
   add_resource_path(
     'www', app_sys('app/www')
