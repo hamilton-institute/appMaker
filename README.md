@@ -1,2 +1,69 @@
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
 # appMaker
-R package to create a shiny app template with Distill theme.
+
+<!-- badges: start -->
+
+<!-- badges: end -->
+
+The goal of appMaker is to create apps with the Hamilton Institute
+Distill theme.
+
+## Installation
+
+You can install the appMaker from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("hamilton-institute/appMaker")
+```
+
+## Creating a simple app
+
+To create a simple app you need to run:
+
+``` r
+library(appMaker)
+
+create_simple_app(path = "~/Desktop/myApp")
+```
+
+The code above will create a RStudio project called `myApp` at your
+Desktop folder (change the path to a existing folder if you don’t have a
+Desktop folder). A new RStudio session will open automatically with this
+project open.
+
+The created project has a placeholder app in the `app.R` file. To create
+your app, you need to modify the `ui` object and `server` function in
+this file. If you want to keep the Distill theme, do not remove the
+`hamiltonThemes::` functions.
+
+## Creating a dashboard
+
+To create a dashboard you need to run:
+
+``` r
+library(appMaker)
+
+create_dash(path = "~/Desktop/myDashboard")
+```
+
+The code above will create a RStudio project called `myDashboard` at
+your Desktop folder (change the path to a existing folder if you don’t
+have a Desktop folder). A new RStudio session will open automatically
+with this project open.
+
+The created project has a placeholder [golem shiny
+app](https://github.com/ThinkR-open/golem). Golem uses [shiny
+modules](https://shiny.rstudio.com/articles/modules.html), so you have
+the modify the `app_ui.R`, `app_server.R` and all `mod_.R` files to
+create your app.
+
+A golem shiny app is a R package, what is great to develop any app with
+too many lines of code. To run the app, run `devtools::load_all()` to
+load all functions at R folder. After that, run the `run_app()` function
+in the Console.
+
+If you want to keep the Distill theme, do not remove the
+`hamiltonThemes::` functions.

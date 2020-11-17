@@ -20,7 +20,7 @@ app_ui <- function(request) {
       controlbar_collapsed = TRUE,
       controlbar_overlay = TRUE,
       # loading_background = "#4682B4",
-      title = "App title",
+      title = "TITLE",
 
       #---
       controlbar = dashboardControlbar(),
@@ -57,7 +57,7 @@ app_ui <- function(request) {
 
       #---
       body = dashboardBody(
-        hamiltonThemes::use_bs4Dash_distill_theme(), # <-- use the theme
+        fresh::use_theme(create_theme_css()), # <-- use the theme
         bs4TabItems(
           bs4TabItem(
             tabName = "summary",
@@ -71,7 +71,13 @@ app_ui <- function(request) {
       ),
 
       #---
-      hamiltonThemes::bs4dash_distill_footer()
+      footer = dashboardFooter(
+        copyrights = a(
+          href = "https://www.maynoothuniversity.ie/hamilton",
+          target = "_blank", "Hamilton Institute"
+        ),
+        right_text = "2020 | developed by Hamilton Institute"
+      )
     )
   )
 }
@@ -84,10 +90,10 @@ app_ui <- function(request) {
 #' @importFrom shiny tags
 #' @importFrom golem add_resource_path activate_js favicon bundle_resources
 #' @noRd
-golem_add_external_resources <- function() {
-  
-  hamiltonThemes::use_bs4Dash_distill_css()
+golem_add_external_resources <- function(){
 
+  hamiltonCovid19::use_css_bs4Dash_distill()
+  
   shinyjs::useShinyjs()
   add_resource_path(
     'www', app_sys('app/www')

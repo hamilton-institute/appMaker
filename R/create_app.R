@@ -19,12 +19,14 @@ create_dash <- function(path, title = NULL) {
     recursive = TRUE,
     pattern = files
   )
+  
+  packageName <- stringr::str_remove_all(basename(path), "_|-")
 
   purrr::walk(
     files_to_replace,
     replace_text_from_file,
     "PACKAGENAME",
-    basename(path)
+    packageName
   )
 
   if (!is.null(title)) {

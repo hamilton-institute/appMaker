@@ -4,7 +4,8 @@ ui <- bs4Dash::bs4DashPage(
   sidebar_collapsed = TRUE,
   sidebar_mini = FALSE,
   body = bs4Dash::bs4DashBody(
-    fresh::use_theme(hamiltonCovid19::theme_bs4Dash()),
+    hamiltonThemes::use_bs4Dash_distill_theme(),
+    hamiltonThemes::use_bs4Dash_distill_css(),
     fluidRow(
       bs4Dash::column(
         width = 4,
